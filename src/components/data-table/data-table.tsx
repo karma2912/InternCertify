@@ -37,100 +37,97 @@ import {
 } from "@/components/ui/table"
 
 const data: Payment[] = [
-        {
-          "id": "m5gr84i9",
-          "amount": 316,
-          "status": "success",
-          "email": "ken99@example.com"
-        },
-        {
-          "id": "3u1reuv4",
-          "amount": 242,
-          "status": "success",
-          "email": "Abe45@example.com"
-        },
-        {
-          "id": "derv1ws0",
-          "amount": 837,
-          "status": "processing",
-          "email": "Monserrat44@example.com"
-        },
-        {
-          "id": "5kma53ae",
-          "amount": 874,
-          "status": "success",
-          "email": "Silas22@example.com"
-        },
-        {
-          "id": "bhqecj4p",
-          "amount": 721,
-          "status": "failed",
-          "email": "carmella@example.com"
-        },
-        {
-          "id": "j1u4hg65",
-          "amount": 659,
-          "status": "success",
-          "email": "milo.jennings@example.com"
-        },
-        {
-          "id": "z9q7dv20",
-          "amount": 398,
-          "status": "processing",
-          "email": "lacy.f@example.com"
-        },
-        {
-          "id": "o8x1lk92",
-          "amount": 123,
-          "status": "failed",
-          "email": "bruce.w@example.com"
-        },
-        {
-          "id": "q3n7yc88",
-          "amount": 570,
-          "status": "success",
-          "email": "tyrese_b@example.com"
-        },
-        {
-          "id": "e7vmxy33",
-          "amount": 264,
-          "status": "success",
-          "email": "maribel.hudson@example.com"
-        },
-        {
-          "id": "x2r8po56",
-          "amount": 902,
-          "status": "processing",
-          "email": "colten.t@example.com"
-        },
-        {
-          "id": "u5cnlt44",
-          "amount": 335,
-          "status": "success",
-          "email": "arlene_b@example.com"
-        },
-        {
-          "id": "g6kfwc77",
-          "amount": 443,
-          "status": "failed",
-          "email": "ellis.f@example.com"
-        },
-        {
-          "id": "v0mzxe11",
-          "amount": 789,
-          "status": "success",
-          "email": "destinee_p@example.com"
-        },
-        {
-          "id": "n3djkr55",
-          "amount": 608,
-          "status": "processing",
-          "email": "josie.k@example.com"
-        }
-      
-      
-]
-
+    {
+      "id": "txn001",
+      "amount": 316,
+      "status": "success",
+      "email": "yash.rajak@gmail.com"
+    },
+    {
+      "id": "txn002",
+      "amount": 489,
+      "status": "success",
+      "email": "salman.khan@gmail.com"
+    },
+    {
+      "id": "txn003",
+      "amount": 275,
+      "status": "success",
+      "email": "aisha.verma@gmail.com"
+    },
+    {
+      "id": "txn004",
+      "amount": 390,
+      "status": "success",
+      "email": "rahul.sharma@gmail.com"
+    },
+    {
+      "id": "txn005",
+      "amount": 512,
+      "status": "success",
+      "email": "priya.singh@gmail.com"
+    },
+    {
+      "id": "txn006",
+      "amount": 228,
+      "status": "success",
+      "email": "amit.patel@gmail.com"
+    },
+    {
+      "id": "txn007",
+      "amount": 645,
+      "status": "success",
+      "email": "neha.kapoor@gmail.com"
+    },
+    {
+      "id": "txn008",
+      "amount": 433,
+      "status": "success",
+      "email": "vikram.jain@gmail.com"
+    },
+    {
+      "id": "txn009",
+      "amount": 301,
+      "status": "success",
+      "email": "deepika.nair@gmail.com"
+    },
+    {
+      "id": "txn010",
+      "amount": 378,
+      "status": "success",
+      "email": "arjun.rathore@gmail.com"
+    },
+    {
+      "id": "txn011",
+      "amount": 293,
+      "status": "success",
+      "email": "kiran.mehta@gmail.com"
+    },
+    {
+      "id": "txn012",
+      "amount": 420,
+      "status": "success",
+      "email": "manish.gupta@gmail.com"
+    },
+    {
+      "id": "txn013",
+      "amount": 509,
+      "status": "success",
+      "email": "sonali.mishra@gmail.com"
+    },
+    {
+      "id": "txn014",
+      "amount": 367,
+      "status": "success",
+      "email": "rohit.iyer@gmail.com"
+    },
+    {
+      "id": "txn015",
+      "amount": 499,
+      "status": "success",
+      "email": "ananya.reddy@gmail.com"
+    }
+  ]
 export type Payment = {
   id: string
   amount: number
