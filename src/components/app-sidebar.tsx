@@ -1,4 +1,4 @@
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react"
+import { BookDashedIcon, Calendar, Home, Inbox, LayoutDashboard, LucideLayoutDashboard, Search, Settings, Table, Table2Icon } from "lucide-react"
 
 import {
   Sidebar,
@@ -19,9 +19,9 @@ const items = [
     icon: Home,
   },
   {
-    title: "Inbox",
+    title: "DashBoard",
     url: "#",
-    icon: Inbox,
+    icon: LucideLayoutDashboard,
   },
   {
     title: "Calendar",
@@ -42,16 +42,16 @@ const items = [
 
 export function AppSidebar() {
   return (
-    <Sidebar variant="sidebar" >
-      <SidebarContent>
-        <SidebarGroup>
+    <Sidebar variant="sidebar" className="h-full bg-black">
+      <SidebarContent className="h-full">
+        <SidebarGroup className="h-full">
           <SidebarGroupLabel>Entwicklera</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
+          <SidebarGroupContent className="h-full">
+            <SidebarMenu className="h-full">
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
-                    <a href={item.url}>
+                    <a href={item.url} className="flex items-center gap-4">
                       <item.icon />
                       <span>{item.title}</span>
                     </a>

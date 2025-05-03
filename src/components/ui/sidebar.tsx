@@ -266,7 +266,7 @@ function SidebarTrigger({
       data-slot="sidebar-trigger"
       variant="ghost"
       size="icon"
-      className={cn("size-10 m-4 bg-yellow-400 ", className)}
+      className={cn("size-10 m-3 bg-yellow-400 ", className)}
       onClick={(event) => {
         onClick?.(event)
         toggleSidebar()
@@ -387,7 +387,7 @@ function SidebarGroup({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="sidebar-group"
       data-sidebar="group"
-      className={cn("relative bg-black text-white flex w-full min-w-0 flex-col p-2", className)}
+      className={cn("relative bg-yellow-200 text-black flex w-full min-w-0 flex-col p-2", className)}
       {...props}
     />
   )
@@ -405,7 +405,7 @@ function SidebarGroupLabel({
       data-slot="sidebar-group-label"
       data-sidebar="group-label"
       className={cn(
-        "text-yellow-400 ring-sidebar-ring flex h-8 shrink-0 items-center rounded-md px-2 mb-4 text-2xl font-medium outline-hidden transition-[margin,opacity] duration-200 ease-linear focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0",
+        "text-black ring-sidebar-ring flex h-20 shrink-0 items-center rounded-md px-2 mb-4 text-2xl font-medium outline-hidden transition-[margin,opacity] duration-200 ease-linear focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0",
         "group-data-[collapsible=icon]:-mt-8 group-data-[collapsible=icon]:opacity-0",
         className
       )}

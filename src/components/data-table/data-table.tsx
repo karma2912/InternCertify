@@ -338,7 +338,7 @@ export function DataTableDemo() {
         />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="ml-auto hover:bg-yellow-600 hover:border-yellow-600 bg-yellow-400 border-yellow-400 text-black">
+            <Button variant="outline" className="ml-auto hover:bg-yellow-500 hover:border-yellow-500 bg-yellow-400 border-yellow-400 text-black">
               Columns <ChevronDown />
             </Button>
           </DropdownMenuTrigger>
@@ -365,7 +365,7 @@ export function DataTableDemo() {
       </div>
       <div className="rounded-md border">
         <Table>
-          <TableHeader>
+          <TableHeader >
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
@@ -424,7 +424,7 @@ export function DataTableDemo() {
             size="sm"
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
-            className="text-black"
+            className="text-black hover:bg-yellow-500 hover:border-yellow-500 bg-yellow-400 border-yellow-400"
           >
             Previous
           </Button>
@@ -433,7 +433,7 @@ export function DataTableDemo() {
             size="sm"
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
-            className="text-black hover:bg-yellow-600 hover:border-yellow-600 bg-yellow-400 border-yellow-400 hover:pointer-coarse"
+            className="text-black hover:bg-yellow-500 hover:border-yellow-500 bg-yellow-400 border-yellow-400 hover:pointer-coarse"
           >
             Next
           </Button>
