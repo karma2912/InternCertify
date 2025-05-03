@@ -196,6 +196,7 @@ export const columns: ColumnDef<Payment>[] = [
         }
         onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
         aria-label="Select all"
+        className="border-black"
       />
     ),
     cell: ({ row }) => (
@@ -203,6 +204,7 @@ export const columns: ColumnDef<Payment>[] = [
         checked={row.getIsSelected()}
         onCheckedChange={(value) => row.toggleSelected(!!value)}
         aria-label="Select row"
+        className="border-black"
       />
     ),
     enableSorting: false,
@@ -334,7 +336,7 @@ export function DataTableDemo() {
           onChange={(event) =>
             table.getColumn("email")?.setFilterValue(event.target.value)
           }
-          className="max-w-sm"
+          className="max-w-sm "
         />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
