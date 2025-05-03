@@ -1,4 +1,4 @@
-import { DataTableDemo } from "@/components/data-table/data-table";
+
 
 export default function Home() {
   return (
