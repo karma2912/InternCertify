@@ -36,103 +36,153 @@ import {
   TableRow,
 } from "@/components/ui/table"
 
-const data: Payment[] = [
-    {
-      "id": "txn001",
-      "amount": 316,
-      "status": "success",
-      "email": "yash.rajak@gmail.com"
-    },
-    {
-      "id": "txn002",
-      "amount": 489,
-      "status": "success",
-      "email": "salman.khan@gmail.com"
-    },
-    {
-      "id": "txn003",
-      "amount": 275,
-      "status": "success",
-      "email": "aisha.verma@gmail.com"
-    },
-    {
-      "id": "txn004",
-      "amount": 390,
-      "status": "success",
-      "email": "rahul.sharma@gmail.com"
-    },
-    {
-      "id": "txn005",
-      "amount": 512,
-      "status": "success",
-      "email": "priya.singh@gmail.com"
-    },
-    {
-      "id": "txn006",
-      "amount": 228,
-      "status": "success",
-      "email": "amit.patel@gmail.com"
-    },
-    {
-      "id": "txn007",
-      "amount": 645,
-      "status": "success",
-      "email": "neha.kapoor@gmail.com"
-    },
-    {
-      "id": "txn008",
-      "amount": 433,
-      "status": "success",
-      "email": "vikram.jain@gmail.com"
-    },
-    {
-      "id": "txn009",
-      "amount": 301,
-      "status": "success",
-      "email": "deepika.nair@gmail.com"
-    },
-    {
-      "id": "txn010",
-      "amount": 378,
-      "status": "success",
-      "email": "arjun.rathore@gmail.com"
-    },
-    {
-      "id": "txn011",
-      "amount": 293,
-      "status": "success",
-      "email": "kiran.mehta@gmail.com"
-    },
-    {
-      "id": "txn012",
-      "amount": 420,
-      "status": "success",
-      "email": "manish.gupta@gmail.com"
-    },
-    {
-      "id": "txn013",
-      "amount": 509,
-      "status": "success",
-      "email": "sonali.mishra@gmail.com"
-    },
-    {
-      "id": "txn014",
-      "amount": 367,
-      "status": "success",
-      "email": "rohit.iyer@gmail.com"
-    },
-    {
-      "id": "txn015",
-      "amount": 499,
-      "status": "success",
-      "email": "ananya.reddy@gmail.com"
-    }
-  ]
+const data: Payment[] =[
+  {
+    "id": "txn001",
+    "stipend": 3860,
+    "name": "Yash Rajak",
+    "email": "yash.rajak@gmail.com",
+    "doj": "14-Nov-2023",
+    "doe": "14-Feb-2024",
+    "intern": "Software Developer"
+  },
+  {
+    "id": "txn002",
+    "stipend": 4790,
+    "name": "Salman Khan",
+    "email": "salman.khan@gmail.com",
+    "doj": "30-Jul-2022",
+    "doe": "30-Oct-2022",
+    "intern": "Frontend Developer"
+  },
+  {
+    "id": "txn003",
+    "stipend": 3280,
+    "name": "Aisha Verma",
+    "email": "aisha.verma@gmail.com",
+    "doj": "12-Jan-2024",
+    "doe": "12-May-2024",
+    "intern": "Data Analyst"
+  },
+  {
+    "id": "txn004",
+    "stipend": 4230,
+    "name": "Rahul Sharma",
+    "email": "rahul.sharma@gmail.com",
+    "doj": "18-Jun-2023",
+    "doe": "18-Sep-2023",
+    "intern": "Backend Developer"
+  },
+  {
+    "id": "txn005",
+    "stipend": 5000,
+    "name": "Priya Singh",
+    "email": "priya.singh@gmail.com",
+    "doj": "04-Mar-2022",
+    "doe": "04-Jun-2022",
+    "intern": "UI/UX Designer"
+  },
+  {
+    "id": "txn006",
+    "stipend": 3375,
+    "name": "Amit Patel",
+    "email": "amit.patel@gmail.com",
+    "doj": "21-Sep-2024",
+    "doe": "21-Nov-2024",
+    "intern": "QA Engineer"
+  },
+  {
+    "id": "txn007",
+    "stipend": 4930,
+    "name": "Neha Kapoor",
+    "email": "neha.kapoor@gmail.com",
+    "doj": "10-Feb-2023",
+    "doe": "10-Jun-2023",
+    "intern": "Cloud Computing"
+  },
+  {
+    "id": "txn008",
+    "stipend": 4405,
+    "name": "Vikram Jain",
+    "email": "vikram.jain@gmail.com",
+    "doj": "07-Aug-2023",
+    "doe": "07-Nov-2023",
+    "intern": "Cybersecurity"
+  },
+  {
+    "id": "txn009",
+    "stipend": 3895,
+    "name": "Deepika Nair",
+    "email": "deepika.nair@gmail.com",
+    "doj": "25-Oct-2022",
+    "doe": "25-Jan-2023",
+    "intern": "Database Administrator"
+  },
+  {
+    "id": "txn010",
+    "stipend": 4120,
+    "name": "Arjun Rathore",
+    "email": "arjun.rathore@gmail.com",
+    "doj": "16-May-2023",
+    "doe": "16-Jul-2023",
+    "intern": "DevOps"
+  },
+  {
+    "id": "txn011",
+    "stipend": 3610,
+    "name": "Kiran Mehta",
+    "email": "kiran.mehta@gmail.com",
+    "doj": "22-Mar-2024",
+    "doe": "22-Jul-2024",
+    "intern": "Machine Learning"
+  },
+  {
+    "id": "txn012",
+    "stipend": 4800,
+    "name": "Manish Gupta",
+    "email": "manish.gupta@gmail.com",
+    "doj": "11-Apr-2023",
+    "doe": "11-Jul-2023",
+    "intern": "Product Management"
+  },
+  {
+    "id": "txn013",
+    "stipend": 3950,
+    "name": "Sonali Mishra",
+    "email": "sonali.mishra@gmail.com",
+    "doj": "19-Dec-2022",
+    "doe": "19-Mar-2023",
+    "intern": "AI Research"
+  },
+  {
+    "id": "txn014",
+    "stipend": 3685,
+    "name": "Rohit Iyer",
+    "email": "rohit.iyer@gmail.com",
+    "doj": "27-Jan-2023",
+    "doe": "27-May-2023",
+    "intern": "Blockchain"
+  },
+  {
+    "id": "txn015",
+    "stipend": 4500,
+    "name": "Ananya Reddy",
+    "email": "ananya.reddy@gmail.com",
+    "doj": "05-Jul-2024",
+    "doe": "05-Sep-2024",
+    "intern": "Full Stack Developer"
+  }
+]
+
+
 export type Payment = {
   id: string
-  amount: number
-  status: "pending" | "processing" | "success" | "failed"
+  stipend: number
+  name: string
+  doj:string
   email: string
+  doe:string
+  intern:string
 }
 
 export const columns: ColumnDef<Payment>[] = [
@@ -159,10 +209,10 @@ export const columns: ColumnDef<Payment>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "status",
-    header: "Status",
+    accessorKey: "name",
+    header: "Full Name",
     cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("status")}</div>
+      <div className="capitalize">{row.getValue("name")}</div>
     ),
   },
   {
@@ -181,15 +231,36 @@ export const columns: ColumnDef<Payment>[] = [
     cell: ({ row }) => <div className="lowercase">{row.getValue("email")}</div>,
   },
   {
-    accessorKey: "amount",
-    header: () => <div className="text-right">Amount</div>,
+    accessorKey: "doj",
+    header: () => <div className="text-center">Date of Join</div>,
+    cell: ({ row }) => (
+      <div className="text-center">{row.getValue("doj")}</div>
+    ),
+  },
+  {
+    accessorKey: "doe",
+    header: () => <div className="text-center">Date of End</div>,
+    cell: ({ row }) => (
+      <div className="text-center">{row.getValue("doe")}</div>
+    ),
+  },
+  {
+    accessorKey: "intern",
+    header: () => <div className="text-center">Position</div>,
+    cell: ({ row }) => (
+      <div className="text-center">{row.getValue("intern")}</div>
+    ),
+  },
+  {
+    accessorKey: "stipend",
+    header: () => <div className="text-right">Stipend</div>,
     cell: ({ row }) => {
-      const amount = parseFloat(row.getValue("amount"))
+      const amount = parseFloat(row.getValue("stipend"))
 
       // Format the amount as a dollar amount
       const formatted = new Intl.NumberFormat("en-US", {
         style: "currency",
-        currency: "USD",
+        currency: "INR",
       }).format(amount)
 
       return <div className="text-right font-medium">{formatted}</div>
@@ -267,7 +338,7 @@ export function DataTableDemo() {
         />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="ml-auto text-black">
+            <Button variant="outline" className="ml-auto hover:bg-yellow-600 hover:border-yellow-600 bg-yellow-400 border-yellow-400 text-black">
               Columns <ChevronDown />
             </Button>
           </DropdownMenuTrigger>
@@ -362,7 +433,7 @@ export function DataTableDemo() {
             size="sm"
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
-            className="text-black"
+            className="text-black hover:bg-yellow-600 hover:border-yellow-600 bg-yellow-400 border-yellow-400 hover:pointer-coarse"
           >
             Next
           </Button>

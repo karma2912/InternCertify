@@ -29,14 +29,16 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <SidebarProvider>
-          <AppSidebar />
-          <main>
-            <SidebarTrigger />
-            <div className="p-4 h-[90vh] w-[100vw] flex justify-center items-center">
-            {children}
-            </div>
-          </main>
+       <SidebarProvider>
+          <div className="flex h-screen w-screen overflow-hidden">
+            <AppSidebar />
+            <main className="flex-1 overflow-auto">
+              <SidebarTrigger />
+              <div className="p-4 h-[calc(100vh-4rem)]">
+                {children}
+              </div>
+            </main>
+          </div>
         </SidebarProvider>
       </body>
     </html>
