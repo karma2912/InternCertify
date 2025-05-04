@@ -17,8 +17,8 @@ import { GitHubIcon } from "@/components/icons"
 export default function SignupPage() {
   return (
     <div className="flex min-h-svh flex-col items-center justify-center gap-6 bg-yellow-400 p-6 md:p-10 ">
-        <div className="text-4xl font-bold">
-            Entwicklera 
+        <div className="text-3xl font-bold">
+            Welcome to Entwicklera 
         </div>
     <Card className="w-full max-w-md">
       <CardHeader className="space-y-1">
