@@ -1,4 +1,8 @@
+'use client'
+
+import { useState } from "react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { 
   Card,
   CardHeader,
@@ -15,6 +19,47 @@ import { GoogleIcon } from "@/components/icons"
 import { GitHubIcon } from "@/components/icons"
 
 export default function SignupPage() {
+
+  const router = useRouter()
+  const [form, setForm] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    confirmPassword: ""
+  });
+  
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setForm({ ...form, [e.target.id]: e.target.value });
+  };
+  
+  const handleSubmit = async () => {
+    if (form.password !== form.confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
+  
+    try {
+      const res = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+  
+      const data = await res.json();
+      if (!res.ok) {
+        alert(data.message || "Signup failed");
+      } else {
+        localStorage.setItem("Token",data.token)
+        alert("Signup successful!");
+        router.push("/main/dashboard")
+      }
+    } catch (err) {
+      console.error("Signup error:", err);
+      alert("An error occurred. Please try again.");
+    }
+  };
+
   return (
     <div className="flex min-h-svh flex-col items-center justify-center gap-6 bg-yellow-400 p-6 md:p-10 ">
         <div className="text-3xl font-bold">
@@ -31,28 +76,33 @@ export default function SignupPage() {
       <CardContent className="grid gap-4">
         <div className="grid grid-cols-2 gap-4">
           <div className="space-y-2">
-            <Label htmlFor="first-name">First name</Label>
-            <Input id="first-name" placeholder="Yash" />
+            <Label htmlFor="firstname">First name</Label>
+            <Input id="firstName" value={form.firstName} onChange={handleChange} placeholder="Yash" />
+
           </div>
           <div className="space-y-2">
-            <Label htmlFor="last-name">Last name</Label>
-            <Input id="last-name" placeholder="Rajak" />
+            <Label htmlFor="lastname">Last name</Label>
+            <Input id="lastName" value={form.lastName} onChange={handleChange} placeholder="Rajak" />
+
           </div>
         </div>
         
         <div className="space-y-2">
           <Label htmlFor="email">Email</Label>
-          <Input id="email" type="email" placeholder="rajakyash@example.com" />
+          <Input id="email" type="email" value={form.email} onChange={handleChange} placeholder="rajakyash@example.com" />
+
         </div>
         
         <div className="space-y-2">
           <Label htmlFor="password">Password</Label>
-          <Input id="password" type="password" />
+          <Input id="password" type="password" value={form.password} onChange={handleChange} />
+
         </div>
         
         <div className="space-y-2">
-          <Label htmlFor="confirm-password">Confirm Password</Label>
-          <Input id="confirm-password" type="password" />
+          <Label htmlFor="confirmPassword">Confirm Password</Label>
+          <Input id="confirmPassword" type="password" value={form.confirmPassword} onChange={handleChange} />
+
         </div>
         
         <div className="flex items-center space-x-2">
@@ -67,7 +117,7 @@ export default function SignupPage() {
       </CardContent>
       
       <CardFooter className="flex flex-col gap-4">
-        <Button className="w-full bg-yellow-500 text-black hover:bg-yellow-600">
+        <Button className="w-full bg-yellow-500 text-black hover:bg-yellow-600" onClick={handleSubmit}>
           Sign Up
         </Button>
         
