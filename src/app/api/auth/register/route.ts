@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/dbConnect';
-import { Intern } from '@/models/Intern';
+import { Admin } from '@/models/Admin';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
@@ -33,8 +33,8 @@ export async function POST(request: Request) {
 
     await dbConnect();
 
-    const existingIntern = await Intern.findOne({ email });
-    if (existingIntern) {
+    const existingAdmin = await Admin.findOne({ email });
+    if (existingAdmin) {
       return NextResponse.json(
         { message: "Email already registered" },
         { status: 409 }
@@ -44,7 +44,7 @@ export async function POST(request: Request) {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    const newIntern = await Intern.create({
+    const newAdmin = await Admin.create({
       firstName,
       lastName,
       email,
@@ -52,10 +52,10 @@ export async function POST(request: Request) {
     });
 
     const tokenPayload = {
-      id: newIntern._id,
-      email: newIntern.email,
-      firstName: newIntern.firstName,
-      lastName: newIntern.lastName
+      id: newAdmin._id,
+      email: newAdmin.email,
+      firstName: newAdmin.firstName,
+      lastName: newAdmin.lastName
     };
 
     const token = jwt.sign(tokenPayload, process.env.JWT_SECRET!, {
@@ -70,7 +70,7 @@ export async function POST(request: Request) {
   } catch (error) {
     console.error("Signup error:", error);
     return NextResponse.json(
-      { message: "Internal Server Error" },
+      { message: "Adminal Server Error" },
       { status: 500 }
     );
   }
