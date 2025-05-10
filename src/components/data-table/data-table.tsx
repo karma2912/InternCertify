@@ -329,7 +329,7 @@ export function DataTableDemo() {
 
   return (
     <div className="w-full">
-      <div className="flex items-center py-4">
+      <div className="flex justify- items-center py-4">
         <Input
           placeholder="Filter emails..."
           value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
@@ -338,6 +338,10 @@ export function DataTableDemo() {
           }
           className="max-w-sm border-black"
         />
+        <div>
+        <Button variant="outline" className="ml-auto hover:bg-yellow-500 hover:border-yellow-500 bg-yellow-400 border-yellow-400 text-black">
+          Add Intern
+        </Button>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="ml-auto hover:bg-yellow-500 hover:border-yellow-500 bg-yellow-400 border-yellow-400 text-black">
@@ -364,6 +368,7 @@ export function DataTableDemo() {
               })}
           </DropdownMenuContent>
         </DropdownMenu>
+        </div>
       </div>
       <div className="rounded-md border">
         <Table>
