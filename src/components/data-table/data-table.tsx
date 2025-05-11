@@ -55,7 +55,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { DatePickerWithRange } from "../ui/date-picker";
-
+import { useState } from "react";
 const data: Payment[] = [
   {
     id: "txn001",
@@ -194,10 +194,6 @@ const data: Payment[] = [
   },
 ];
 
-const handleIntern = () => {
-  console.log("Handle Intern is being clicked");
-};
-
 export type Payment = {
   id: string;
   stipend: number;
@@ -316,6 +312,14 @@ export const columns: ColumnDef<Payment>[] = [
 ];
 
 export function DataTableDemo() {
+  const [open, setOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    position: "",
+    stipend: "",
+    dateRange: null,
+  });
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -343,6 +347,10 @@ export function DataTableDemo() {
     },
   });
 
+  const addIntern = () => {
+    console.log(formData);
+    setOpen(false);
+  };
   return (
     <div className="w-full ">
       <div className="flex justify-between items-center py-4">
@@ -355,7 +363,7 @@ export function DataTableDemo() {
           className="max-w-sm border-black"
         />
         <div>
-          <Dialog>
+          <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger>
               <Button
                 variant="outline"
@@ -364,13 +372,15 @@ export function DataTableDemo() {
                 + Add Intern
               </Button>
             </DialogTrigger>
-            
+
             <DialogContent className="w-[450px] bg-yellow-50 text-black">
-      <DialogHeader>
-        <DialogTitle>Create project</DialogTitle>
-        <DialogDescription>Deploy your new project in one-click.</DialogDescription>
-      </DialogHeader>
-         <form className="mt-4">
+              <DialogHeader>
+                <DialogTitle>Create project</DialogTitle>
+                <DialogDescription>
+                  Deploy your new project in one-click.
+                </DialogDescription>
+              </DialogHeader>
+              <form className="mt-4">
                 <div className="grid w-full items-center gap-4">
                   <div className="flex flex-col space-y-1.5">
                     <Label htmlFor="name" className="text-black">
@@ -380,6 +390,10 @@ export function DataTableDemo() {
                       id="name"
                       placeholder="Name of intern"
                       className="bg-white text-black border border-black/10"
+                      value={formData.name}
+                      onChange={(e) =>
+                        setFormData({ ...formData, name: e.target.value })
+                      }
                     />
                   </div>
 
@@ -391,6 +405,10 @@ export function DataTableDemo() {
                       id="email"
                       placeholder="Email of intern"
                       className="bg-white text-black border border-black/10"
+                      value={formData.email}
+                      onChange={(e) =>
+                        setFormData({ ...formData, email: e.target.value })
+                      }
                     />
                   </div>
 
@@ -402,7 +420,11 @@ export function DataTableDemo() {
                     <Label htmlFor="framework" className="text-black">
                       Position
                     </Label>
-                    <Select>
+                    <Select
+                      onValueChange={(value) =>
+                        setFormData({ ...formData, position: value })
+                      }
+                    >
                       <SelectTrigger
                         id="framework"
                         className="bg-white text-black border border-black/10"
@@ -414,7 +436,9 @@ export function DataTableDemo() {
                         className="bg-white text-black"
                       >
                         <SelectItem value="Web">Web Development</SelectItem>
-                        <SelectItem value="Android">Android Development</SelectItem>
+                        <SelectItem value="Android">
+                          Android Development
+                        </SelectItem>
                         <SelectItem value="Science">Data Science</SelectItem>
                         <SelectItem value="Analyst">Data Analyst</SelectItem>
                       </SelectContent>
@@ -429,14 +453,18 @@ export function DataTableDemo() {
                       placeholder="Stipend of intern in RUPEE"
                       className="bg-white text-black border border-black/10"
                       type="number"
+                      value={formData.stipend}
+                      onChange={(e) =>
+                        setFormData({ ...formData, stipend: e.target.value })
+                      }
                     />
                   </div>
                 </div>
               </form>
-      <DialogFooter className="flex justify-between">
-        <Button variant="outline">Cancel</Button>
-        <Button>Add</Button>
-      </DialogFooter>
+              <DialogFooter className="flex justify-between">
+                <Button variant="outline">Cancel</Button>
+                <Button onClick={addIntern}>Add</Button>
+              </DialogFooter>
             </DialogContent>
           </Dialog>
 
