@@ -14,6 +14,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react";
+import { toast } from "sonner";
 
 import { Label } from "@/components/ui/label";
 import {
@@ -299,7 +300,7 @@ export const columns: ColumnDef<Payment>[] = [
             <DropdownMenuItem
               onClick={() => navigator.clipboard.writeText(payment.id)}
             >
-              Copy payment ID
+              Copy Intern ID
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>View customer</DropdownMenuItem>
@@ -316,9 +317,10 @@ export function DataTableDemo() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    position: "",
+    intern: "",
     stipend: "",
-    dateRange: null,
+    doj: "19-Jan-2023",
+    doe: "19-Mar-2023"
   });
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
@@ -347,9 +349,44 @@ export function DataTableDemo() {
     },
   });
 
-  const addIntern = () => {
-    console.log(formData);
+  const addIntern = async() => {
+
+     try {
+    const res = await fetch('/api/interns', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    });
+
+    if (!res.ok) {
+      throw new Error('Failed to save intern');
+    }
+
+    const savedIntern = await res.json();
+    console.log('Intern saved:', savedIntern);
     setOpen(false);
+    toast.custom((t) => (
+      <div
+        className="bg-white border border-green-500 text-green-700 p-4 rounded-lg shadow-md font-medium"
+        onClick={() => toast.dismiss(t)}
+      >
+        ✅ Intern added successfully!
+      </div>
+    ));
+
+  } catch (err) {
+    console.error('Error submitting intern:', err);
+    toast.custom((t) => (
+      <div
+        className="bg-white border border-red-500 text-red-700 p-4 rounded-lg shadow-md font-medium"
+        onClick={() => toast.dismiss(t)}
+      >
+        ❌ Failed to add intern. Please try again.
+      </div>
+    ));
+  }
   };
   return (
     <div className="w-full ">
@@ -364,7 +401,7 @@ export function DataTableDemo() {
         />
         <div>
           <Dialog open={open} onOpenChange={setOpen}>
-            <DialogTrigger>
+            <DialogTrigger asChild>
               <Button
                 variant="outline"
                 className="ml-auto hover:bg-yellow-500  hover:border-yellow-500 bg-yellow-400 border-yellow-400 text-black m-2"
@@ -375,9 +412,9 @@ export function DataTableDemo() {
 
             <DialogContent className="w-[450px] bg-yellow-50 text-black">
               <DialogHeader>
-                <DialogTitle>Create project</DialogTitle>
+                <DialogTitle>Add Intern</DialogTitle>
                 <DialogDescription>
-                  Deploy your new project in one-click.
+                  Add the correct details of intern.
                 </DialogDescription>
               </DialogHeader>
               <form className="mt-4">
@@ -422,7 +459,7 @@ export function DataTableDemo() {
                     </Label>
                     <Select
                       onValueChange={(value) =>
-                        setFormData({ ...formData, position: value })
+                        setFormData({ ...formData, intern: value })
                       }
                     >
                       <SelectTrigger
