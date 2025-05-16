@@ -2,8 +2,7 @@
 import type { Metadata } from 'next'
 import { Toaster } from 'sonner'
 export const metadata: Metadata = {
-  title: 'Your New App Name',
-  description: 'Your app description',
+  title: 'Entwicklera - Admin',
 }
 
 export default function RootLayout({

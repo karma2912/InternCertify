@@ -15,7 +15,7 @@ import {
 } from "@tanstack/react-table";
 import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react";
 import { toast } from "sonner";
-
+import { useEffect } from "react";
 import { Label } from "@/components/ui/label";
 import {
   Select,
@@ -57,143 +57,10 @@ import {
 } from "@/components/ui/table";
 import { DatePickerWithRange } from "../ui/date-picker";
 import { useState } from "react";
-const data: Payment[] = [
-  {
-    id: "txn001",
-    stipend: 3860,
-    name: "Yash Rajak",
-    email: "yash.rajak@gmail.com",
-    doj: "14-Nov-2023",
-    doe: "14-Feb-2024",
-    intern: "Software Developer",
-  },
-  {
-    id: "txn002",
-    stipend: 4790,
-    name: "Salman Khan",
-    email: "salman.khan@gmail.com",
-    doj: "30-Jul-2022",
-    doe: "30-Oct-2022",
-    intern: "Frontend Developer",
-  },
-  {
-    id: "txn003",
-    stipend: 3280,
-    name: "Aisha Verma",
-    email: "aisha.verma@gmail.com",
-    doj: "12-Jan-2024",
-    doe: "12-May-2024",
-    intern: "Data Analyst",
-  },
-  {
-    id: "txn004",
-    stipend: 4230,
-    name: "Rahul Sharma",
-    email: "rahul.sharma@gmail.com",
-    doj: "18-Jun-2023",
-    doe: "18-Sep-2023",
-    intern: "Backend Developer",
-  },
-  {
-    id: "txn005",
-    stipend: 5000,
-    name: "Priya Singh",
-    email: "priya.singh@gmail.com",
-    doj: "04-Mar-2022",
-    doe: "04-Jun-2022",
-    intern: "UI/UX Designer",
-  },
-  {
-    id: "txn006",
-    stipend: 3375,
-    name: "Amit Patel",
-    email: "amit.patel@gmail.com",
-    doj: "21-Sep-2024",
-    doe: "21-Nov-2024",
-    intern: "QA Engineer",
-  },
-  {
-    id: "txn007",
-    stipend: 4930,
-    name: "Neha Kapoor",
-    email: "neha.kapoor@gmail.com",
-    doj: "10-Feb-2023",
-    doe: "10-Jun-2023",
-    intern: "Cloud Computing",
-  },
-  {
-    id: "txn008",
-    stipend: 4405,
-    name: "Vikram Jain",
-    email: "vikram.jain@gmail.com",
-    doj: "07-Aug-2023",
-    doe: "07-Nov-2023",
-    intern: "Cybersecurity",
-  },
-  {
-    id: "txn009",
-    stipend: 3895,
-    name: "Deepika Nair",
-    email: "deepika.nair@gmail.com",
-    doj: "25-Oct-2022",
-    doe: "25-Jan-2023",
-    intern: "Database Administrator",
-  },
-  {
-    id: "txn010",
-    stipend: 4120,
-    name: "Arjun Rathore",
-    email: "arjun.rathore@gmail.com",
-    doj: "16-May-2023",
-    doe: "16-Jul-2023",
-    intern: "DevOps",
-  },
-  {
-    id: "txn011",
-    stipend: 3610,
-    name: "Kiran Mehta",
-    email: "kiran.mehta@gmail.com",
-    doj: "22-Mar-2024",
-    doe: "22-Jul-2024",
-    intern: "Machine Learning",
-  },
-  {
-    id: "txn012",
-    stipend: 4800,
-    name: "Manish Gupta",
-    email: "manish.gupta@gmail.com",
-    doj: "11-Apr-2023",
-    doe: "11-Jul-2023",
-    intern: "Product Management",
-  },
-  {
-    id: "txn013",
-    stipend: 3950,
-    name: "Sonali Mishra",
-    email: "sonali.mishra@gmail.com",
-    doj: "19-Dec-2022",
-    doe: "19-Mar-2023",
-    intern: "AI Research",
-  },
-  {
-    id: "txn014",
-    stipend: 3685,
-    name: "Rohit Iyer",
-    email: "rohit.iyer@gmail.com",
-    doj: "27-Jan-2023",
-    doe: "27-May-2023",
-    intern: "Blockchain",
-  },
-  {
-    id: "txn015",
-    stipend: 4500,
-    name: "Ananya Reddy",
-    email: "ananya.reddy@gmail.com",
-    doj: "05-Jul-2024",
-    doe: "05-Sep-2024",
-    intern: "Full Stack Developer",
-  },
-];
+
+
+
+
 
 export type Payment = {
   id: string;
@@ -313,6 +180,22 @@ export const columns: ColumnDef<Payment>[] = [
 ];
 
 export function DataTableDemo() {
+  const [data, setData] = useState<Payment[]>([]);
+   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('/api/fetchInterns');
+        if (!response.ok) throw new Error('Failed to fetch data');
+        const result = await response.json();
+        setData(result);
+      } catch (err) {
+        console.log("Got an error")
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const [open, setOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -351,8 +234,15 @@ export function DataTableDemo() {
 
   const addIntern = async() => {
 
-     try {
-    const res = await fetch('/api/interns', {
+    const tempId = `temp-${Date.now()}`;
+    try {
+    setData(prev => [...prev, {
+      id: tempId,
+      ...formData,
+      stipend: Number(formData.stipend)
+    }]);
+
+    const res = await fetch('/api/addInterns', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -360,32 +250,36 @@ export function DataTableDemo() {
       body: JSON.stringify(formData),
     });
 
-    if (!res.ok) {
-      throw new Error('Failed to save intern');
-    }
+    if (!res.ok) throw new Error('Failed to save intern');
 
     const savedIntern = await res.json();
-    console.log('Intern saved:', savedIntern);
-    setOpen(false);
-    toast.custom((t) => (
-      <div
-        className="bg-white border border-green-500 text-green-700 p-4 rounded-lg shadow-md font-medium"
-        onClick={() => toast.dismiss(t)}
-      >
-        ✅ Intern added successfully!
-      </div>
+    
+    setData(prev => prev.map(item => 
+      item.id === tempId ? { ...savedIntern, id: savedIntern._id } : item
     ));
 
+    setOpen(false);
+    setFormData({
+      name: "",
+      email: "",
+      intern: "",
+      stipend: "",
+      doj: "19-Jan-2023",
+      doe: "19-Mar-2023"
+    });
+
+     toast.custom((t) => (
+        <div className="bg-white border border-green-500 text-green-700 p-4 rounded-lg shadow-md font-medium">
+          ✅ Intern added successfully!
+        </div>
+      ));
   } catch (err) {
-    console.error('Error submitting intern:', err);
+    setData(prev => prev.filter(item => item.id !== tempId));
     toast.custom((t) => (
-      <div
-        className="bg-white border border-red-500 text-red-700 p-4 rounded-lg shadow-md font-medium"
-        onClick={() => toast.dismiss(t)}
-      >
-        ❌ Failed to add intern. Please try again.
-      </div>
-    ));
+        <div className="bg-white border border-red-500 text-red-700 p-4 rounded-lg shadow-md font-medium">
+          ❌ Failed to add intern. Please try again.
+        </div>
+      ));
   }
   };
   return (
@@ -472,12 +366,12 @@ export function DataTableDemo() {
                         position="popper"
                         className="bg-white text-black"
                       >
-                        <SelectItem value="Web">Web Development</SelectItem>
-                        <SelectItem value="Android">
+                        <SelectItem value="Web Development">Web Development</SelectItem>
+                        <SelectItem value="Android Development">
                           Android Development
                         </SelectItem>
-                        <SelectItem value="Science">Data Science</SelectItem>
-                        <SelectItem value="Analyst">Data Analyst</SelectItem>
+                        <SelectItem value="Data Science">Data Science</SelectItem>
+                        <SelectItem value="Data Analyst">Data Analyst</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
