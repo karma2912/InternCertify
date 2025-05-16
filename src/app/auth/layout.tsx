@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Authentication",
+  title: "Entwicklera - Authentication",
 };
 
 export default function RootLayout({
